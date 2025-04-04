@@ -85,27 +85,28 @@ const Job = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
       <div className="w-full">
-      <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[70%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
-  <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4">
+      <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[60%] lg:w-[50%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
+  <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4 ">
     
-    <div className="flex items-center space-x-4 overflow-x-auto flex-1 min-w-0">
+    <div className="flex items-center space-x-17 overflow-x-auto flex-1 min-w-0">
       <img src={homeImage} alt="Logo" className="w-8 h-8 flex-shrink-0" />
-      <nav className="flex space-x-4 sm:space-x-6 text-sm sm:text-base whitespace-nowrap overflow-x-auto">
+      <nav className="flex space-x-12 sm:space-x-6 text-sm sm:text-base whitespace-nowrap overflow-x-auto">
         <a href="#" className="text-black font-medium">Home</a>
         <a href="#" className="text-black font-medium">Find Jobs</a>
         <a href="#" className="text-black font-medium">Find Talents</a>
         <a href="#" className="text-black font-medium">About us</a>
         <a href="#" className="text-black font-medium">Testimonials</a>
       </nav>
-    </div>
-
-    
-    <button
+      <button
       onClick={() => setIsModalOpen(true)}
       className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
     >
       Create Jobs
     </button>
+    </div>
+
+    
+ 
   </div>
 </header>
 
