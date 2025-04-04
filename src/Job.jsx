@@ -85,7 +85,7 @@ const Job = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
       <div className="w-full">
-      <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[55%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
+      <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[66%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
   <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4 ">
     
     <div className="flex items-center space-x-17 overflow-x-auto flex-1 min-w-0">
