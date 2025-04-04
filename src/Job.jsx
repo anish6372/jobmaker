@@ -90,7 +90,7 @@ const Job = () => {
     
     <div className="flex items-center space-x-17 overflow-x-auto flex-1 min-w-0">
       <img src={homeImage} alt="Logo" className="w-8 h-8 flex-shrink-0" />
-      <nav className="flex space-x-12 sm:space-x-6 text-sm sm:text-base whitespace-nowrap overflow-x-auto">
+      <nav className="flex space-x-8 sm:space-x-6 text-sm sm:text-base whitespace-nowrap overflow-x-auto">
         <a href="#" className="text-black font-medium">Home</a>
         <a href="#" className="text-black font-medium">Find Jobs</a>
         <a href="#" className="text-black font-medium">Find Talents</a>
