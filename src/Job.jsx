@@ -8,6 +8,7 @@ import swiggyImage from "./assets/swiggy.png";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+
 const jobs = [
   {
     id: 1,
@@ -171,15 +172,16 @@ const Job = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
       <div className="w-full">
-        <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[66%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4 ">
-            <div className="flex items-center space-x-17 overflow-x-auto flex-1 min-w-0">
+        <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[60%] mx-auto fixed top-5 left-[48%] sm:left-1/2 transform -translate-x-[48%] sm:-translate-x-1/2 z-10">
+          <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-10 w-full">
               <img
                 src={homeImage}
                 alt="Logo"
                 className="w-8 h-8 flex-shrink-0"
               />
-              <nav className="flex space-x-8 sm:space-x-6 text-sm sm:text-base whitespace-nowrap overflow-x-auto">
+
+              <nav className="flex flex-wrap gap-3 sm:gap-6 text-sm sm:text-base">
                 <a href="#" className="text-black font-medium">
                   Home
                 </a>
@@ -196,6 +198,7 @@ const Job = () => {
                   Testimonials
                 </a>
               </nav>
+
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
@@ -208,9 +211,9 @@ const Job = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
-          <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-full sm:h-[80%] shadow-lg relative overflow-y-auto">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">
+        <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-2 sm:p-4">
+          <div className="bg-white p-4 sm:p-6 rounded-lg w-full max-w-3xl max-h-[90vh] shadow-lg relative overflow-y-auto">
+            <h2 className="text-lg sm:text-2xl font-bold mb-4">
               {editJobId ? "Edit Job" : "Create Job"}
             </h2>
             <button
@@ -222,7 +225,7 @@ const Job = () => {
 
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
             >
               <div className="flex flex-col">
                 <label htmlFor="title" className="mb-1 font-medium">
@@ -238,6 +241,7 @@ const Job = () => {
                   <p className="text-red-500 text-sm">{errors.title.message}</p>
                 )}
               </div>
+
               <div className="flex flex-col">
                 <label htmlFor="company" className="mb-1 font-medium">
                   Company Name
@@ -256,6 +260,7 @@ const Job = () => {
                   </p>
                 )}
               </div>
+
               <div className="flex flex-col">
                 <label htmlFor="location" className="mb-1 font-medium">
                   Location
@@ -265,7 +270,7 @@ const Job = () => {
                   {...register("location", {
                     required: "Location is required",
                   })}
-                  placeholder="Choose Prefered Location"
+                  placeholder="Choose Preferred Location"
                   className="border p-2 rounded-lg w-full"
                 />
                 {errors.location && (
@@ -274,6 +279,7 @@ const Job = () => {
                   </p>
                 )}
               </div>
+
               <div className="flex flex-col">
                 <label htmlFor="jobType" className="mb-1 font-medium">
                   Job Type
@@ -294,63 +300,68 @@ const Job = () => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col sm:w-[99%]">
-                <label htmlFor="salaryRange" className="mb-1 font-medium">
-                  Salary Range
-                </label>
-                <div className="flex gap-2">
-                  <div className="relative flex-1 flex items-center border rounded-lg p-2">
-                    <span className="absolute left-2 text-gray-500">↕</span>
-                    <span className="absolute left-6 text-gray-500">₹</span>
-                    <input
-                      id="minSalary"
-                      {...register("minSalary", {
-                        required: "Min salary required",
-                      })}
-                      placeholder="0"
-                      className="pl-10 pr-2 w-full text-gray-500 outline-none"
-                      type="number"
-                    />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:col-span-2">
+                {/* Salary Range */}
+                <div className="flex flex-col">
+                  <label htmlFor="salaryRange" className="mb-1 font-medium">
+                    Salary Range
+                  </label>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <div className="relative flex-1 flex items-center border rounded-lg p-2">
+                      <span className="absolute left-2 text-gray-500">↕</span>
+                      <span className="absolute left-6 text-gray-500">₹</span>
+                      <input
+                        id="minSalary"
+                        {...register("minSalary", {
+                          required: "Min salary required",
+                        })}
+                        placeholder="0"
+                        className="pl-10 pr-2 w-full text-gray-500 outline-none"
+                        type="number"
+                      />
+                    </div>
+                    <div className="relative flex-1 flex items-center border rounded-lg p-2">
+                      <span className="absolute left-2 text-gray-500">↕</span>
+                      <span className="absolute left-6 text-gray-500">₹</span>
+                      <input
+                        id="maxSalary"
+                        {...register("maxSalary", {
+                          required: "Max salary required",
+                        })}
+                        placeholder="12,00,000"
+                        className="pl-10 pr-2 w-full text-gray-500 outline-none"
+                        type="number"
+                      />
+                    </div>
                   </div>
-                  <div className="relative flex-1 flex items-center border rounded-lg p-2">
-                    <span className="absolute left-2 text-gray-500">↕</span>
-                    <span className="absolute left-6 text-gray-500">₹</span>
-                    <input
-                      id="maxSalary"
-                      {...register("maxSalary", {
-                        required: "Max salary required",
-                      })}
-                      placeholder="12,00,000"
-                      className="pl-10 pr-2 w-full text-gray-500 outline-none"
-                      type="number"
-                    />
-                  </div>
+                </div>
+
+                {/* Application Deadline */}
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="applicationDeadline"
+                    className="mb-1 font-medium text-sm sm:text-base"
+                  >
+                    Application Deadline
+                  </label>
+                  <input
+                    id="applicationDeadline"
+                    type="date"
+                    {...register("applicationDeadline", {
+                      required: "Deadline is required",
+                    })}
+                    className="border p-2 rounded-lg w-full text-sm"
+                  />
+                  {errors.applicationDeadline && (
+                    <p className="text-red-500 text-sm">
+                      {errors.applicationDeadline.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              <div className="flex flex-col sm:col-span-1 max-w-xs sm:max-w-full">
-  <label
-    htmlFor="applicationDeadline"
-    className="mb-1 font-medium text-sm sm:text-base"
-  >
-    Application Deadline
-  </label>
-  <input
-    id="applicationDeadline"
-    type="date"
-    {...register("applicationDeadline", {
-      required: "Deadline is required",
-    })}
-    className="border p-1 sm:p-2 rounded-lg w-full sm:w-full text-sm"
-  />
-  {errors.applicationDeadline && (
-    <p className="text-red-500 text-sm">
-      {errors.applicationDeadline.message}
-    </p>
-  )}
-</div>
-
-              <div className="flex flex-col col-span-2">
+              <div className="flex flex-col sm:col-span-2">
                 <label htmlFor="description" className="mb-1 font-medium">
                   Job Description
                 </label>
@@ -361,7 +372,7 @@ const Job = () => {
                   })}
                   placeholder="Please share a description to let the candidate know more about the job role"
                   className="border p-2 rounded-lg w-full"
-                  rows="6"
+                  rows="5"
                 ></textarea>
                 {errors.description && (
                   <p className="text-red-500 text-sm">
@@ -369,17 +380,18 @@ const Job = () => {
                   </p>
                 )}
               </div>
-              <div className="col-span-2 flex justify-between mt-4">
+
+              <div className="col-span-1 sm:col-span-2 flex justify-between mt-4">
                 <button
                   type="button"
-                  className="border border-gray-400 text-gray-700 p-2 rounded-lg px-6"
+                  className="border border-gray-400 text-gray-700 p-2 rounded-lg px-4 sm:px-6"
                   onClick={() => console.log("Draft saved")}
                 >
                   Save Draft
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white p-2 rounded-lg px-8"
+                  className="bg-blue-500 text-white p-2 rounded-lg px-6 sm:px-8"
                 >
                   {editJobId ? "Update" : "Publish"}
                 </button>
@@ -389,7 +401,8 @@ const Job = () => {
         </div>
       )}
 
-      <div className="mt-21 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-3 sm:gap-3 min-h-[120px]">
+<div className="mt-28 sm:mt-20 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-3 sm:gap-3 min-h-[120px]">
+
         <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 w-full sm:w-auto">
           <FaSearch className="text-gray-500" />
           <input
