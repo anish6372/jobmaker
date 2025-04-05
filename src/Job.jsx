@@ -213,7 +213,7 @@ const Job = () => {
 
       {isModalOpen && (
   <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
-    <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-screen sm:h-[80%] shadow-lg relative flex flex-col">
+    <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-[120%] sm:h-[80%] shadow-lg relative flex flex-col">
       
       {/* Modal Header */}
       <div className="flex justify-between items-center mb-4">
