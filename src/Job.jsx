@@ -401,7 +401,7 @@ const Job = () => {
         </div>
       )}
 
-<div className="mt-[160px] sm:mt-24 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-4 min-h-[120px] sm:w-[90%] lg:w-[80%]">
+<div className="mt-[200px] sm:mt-24 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-4 min-h-[120px] sm:w-[90%] lg:w-[80%]">
 
   <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 w-full sm:w-auto">
     <FaSearch className="text-gray-500" />
