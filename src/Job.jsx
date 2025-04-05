@@ -209,7 +209,7 @@ const Job = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
-          <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-[85%] sm:h-[80%] shadow-lg relative overflow-y-auto">
+          <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-full sm:h-[80%] shadow-lg relative overflow-y-auto">
             <h2 className="text-xl sm:text-2xl font-bold mb-4">
               {editJobId ? "Edit Job" : "Create Job"}
             </h2>
