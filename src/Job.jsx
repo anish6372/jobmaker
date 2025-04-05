@@ -328,27 +328,28 @@ const Job = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:col-span-1">
-                <label
-                  htmlFor="applicationDeadline"
-                  className="mb-1 font-medium"
-                >
-                  Application Deadline
-                </label>
-                <input
-                  id="applicationDeadline"
-                  type="date"
-                  {...register("applicationDeadline", {
-                    required: "Deadline is required",
-                  })}
-                  className="border p-2 rounded-lg w-full"
-                />
-                {errors.applicationDeadline && (
-                  <p className="text-red-500 text-sm">
-                    {errors.applicationDeadline.message}
-                  </p>
-                )}
-              </div>
+              <div className="flex flex-col sm:col-span-1 max-w-xs sm:max-w-full">
+  <label
+    htmlFor="applicationDeadline"
+    className="mb-1 font-medium text-sm sm:text-base"
+  >
+    Application Deadline
+  </label>
+  <input
+    id="applicationDeadline"
+    type="date"
+    {...register("applicationDeadline", {
+      required: "Deadline is required",
+    })}
+    className="border p-1 sm:p-2 rounded-lg w-full sm:w-full text-sm"
+  />
+  {errors.applicationDeadline && (
+    <p className="text-red-500 text-sm">
+      {errors.applicationDeadline.message}
+    </p>
+  )}
+</div>
+
               <div className="flex flex-col col-span-2">
                 <label htmlFor="description" className="mb-1 font-medium">
                   Job Description
