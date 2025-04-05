@@ -94,13 +94,13 @@ const Job = () => {
     formState: { errors },
   } = useForm();
 
-  const [dynamicJobs, setDynamicJobs] = useState([]); 
+  const [dynamicJobs, setDynamicJobs] = useState([]);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/jobs");
-        setDynamicJobs(response.data); 
+        setDynamicJobs(response.data);
       } catch (error) {
         console.error("Error fetching jobs:", error);
       }
@@ -114,16 +114,14 @@ const Job = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  
   const onSubmit = async (data) => {
     try {
-      const salaryRange = `${data.minSalary}-${data.maxSalary}`; 
+      const salaryRange = `${data.minSalary}-${data.maxSalary}`;
       const jobData = { ...data, salaryRange };
       delete jobData.minSalary;
       delete jobData.maxSalary;
 
       if (editJobId) {
-        
         const response = await axios.put(
           `http://localhost:5000/api/jobs/${editJobId}`,
           jobData
@@ -131,9 +129,8 @@ const Job = () => {
         setDynamicJobs((prevJobs) =>
           prevJobs.map((job) => (job._id === editJobId ? response.data : job))
         );
-        setEditJobId(null); 
+        setEditJobId(null);
       } else {
-       
         const response = await axios.post(
           "http://localhost:5000/api/jobs/upload",
           jobData
@@ -141,8 +138,8 @@ const Job = () => {
         setDynamicJobs((prevJobs) => [...prevJobs, response.data]);
       }
 
-      setIsModalOpen(false); 
-      reset(); 
+      setIsModalOpen(false);
+      reset();
     } catch (error) {
       console.error("Error creating/updating job:", error);
     }
@@ -150,15 +147,14 @@ const Job = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/jobs/${id}`);
-      setDynamicJobs((prevJobs) => prevJobs.filter((job) => job._id !== id)); 
+      setDynamicJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
     } catch (error) {
       console.error("Error deleting job:", error);
     }
   };
 
-  
   const handleEdit = (job) => {
-    setEditJobId(job._id); 
+    setEditJobId(job._id);
     const [minSalary, maxSalary] = job.salaryRange.split("-");
     setValue("title", job.title);
     setValue("company", job.company);
@@ -168,10 +164,10 @@ const Job = () => {
     setValue("maxSalary", maxSalary);
     setValue("applicationDeadline", job.applicationDeadline);
     setValue("description", job.description);
-    setIsModalOpen(true); 
+    setIsModalOpen(true);
   };
 
-  const allJobs = [...jobs, ...dynamicJobs]; 
+  const allJobs = [...jobs, ...dynamicJobs];
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
       <div className="w-full">
@@ -212,156 +208,185 @@ const Job = () => {
       </div>
 
       {isModalOpen && (
-  <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
-    <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-[120%] sm:h-[80%] shadow-lg relative flex flex-col">
-      
-      {/* Modal Header */}
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl sm:text-2xl font-bold">
-          {editJobId ? "Edit Job" : "Create Job"}
-        </h2>
-        <button
-          onClick={() => setIsModalOpen(false)}
-          className="text-xl font-bold"
-        >
-          &times;
-        </button>
-      </div>
-
-      {/* Scrollable Form */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col flex-1 overflow-hidden"
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto pr-2 mb-4">
-          {/* Job Title */}
-          <div className="flex flex-col">
-            <label htmlFor="title" className="mb-1 font-medium">Job Title</label>
-            <input
-              id="title"
-              {...register("title", { required: "Job title is required" })}
-              placeholder="Job Title"
-              className="border p-2 rounded-lg w-full"
-            />
-            {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
-          </div>
-
-          {/* Company Name */}
-          <div className="flex flex-col">
-            <label htmlFor="company" className="mb-1 font-medium">Company Name</label>
-            <input
-              id="company"
-              {...register("company", { required: "Company name is required" })}
-              placeholder="Amazon, Microsoft, Swiggy"
-              className="border p-2 rounded-lg w-full"
-            />
-            {errors.company && <p className="text-red-500 text-sm">{errors.company.message}</p>}
-          </div>
-
-          {/* Location */}
-          <div className="flex flex-col">
-            <label htmlFor="location" className="mb-1 font-medium">Location</label>
-            <input
-              id="location"
-              {...register("location", { required: "Location is required" })}
-              placeholder="Choose Preferred Location"
-              className="border p-2 rounded-lg w-full"
-            />
-            {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
-          </div>
-
-          {/* Job Type */}
-          <div className="flex flex-col">
-            <label htmlFor="jobType" className="mb-1 font-medium">Job Type</label>
-            <select
-              id="jobType"
-              {...register("jobType", { required: "Job type is required" })}
-              className="border p-2 rounded-lg w-full"
+        <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
+          <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-[98%] sm:h-[80%] shadow-lg relative overflow-y-auto">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">
+              {editJobId ? "Edit Job" : "Create Job"}
+            </h2>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-2 right-4 text-xl"
             >
-              <option value="Full Time">Full Time</option>
-              <option value="Internship">Internship</option>
-              <option value="Part Time">Part Time</option>
-              <option value="Contract">Contract</option>
-            </select>
-            {errors.jobType && <p className="text-red-500 text-sm">{errors.jobType.message}</p>}
-          </div>
+              &times;
+            </button>
 
-          {/* Salary Range */}
-          <div className="flex flex-col sm:w-[99%]">
-            <label htmlFor="salaryRange" className="mb-1 font-medium">Salary Range</label>
-            <div className="flex gap-2">
-              <div className="relative flex-1 flex items-center border rounded-lg p-2">
-                <span className="absolute left-2 text-gray-500">↕</span>
-                <span className="absolute left-6 text-gray-500">₹</span>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+            >
+              <div className="flex flex-col">
+                <label htmlFor="title" className="mb-1 font-medium">
+                  Job Title
+                </label>
                 <input
-                  id="minSalary"
-                  {...register("minSalary", { required: "Min salary required" })}
-                  placeholder="0"
-                  className="pl-10 pr-2 w-full text-gray-500 outline-none"
-                  type="number"
+                  id="title"
+                  {...register("title", { required: "Job title is required" })}
+                  placeholder="Job Title"
+                  className="border p-2 rounded-lg w-full"
                 />
+                {errors.title && (
+                  <p className="text-red-500 text-sm">{errors.title.message}</p>
+                )}
               </div>
-              <div className="relative flex-1 flex items-center border rounded-lg p-2">
-                <span className="absolute left-2 text-gray-500">↕</span>
-                <span className="absolute left-6 text-gray-500">₹</span>
+              <div className="flex flex-col">
+                <label htmlFor="company" className="mb-1 font-medium">
+                  Company Name
+                </label>
                 <input
-                  id="maxSalary"
-                  {...register("maxSalary", { required: "Max salary required" })}
-                  placeholder="12,00,000"
-                  className="pl-10 pr-2 w-full text-gray-500 outline-none"
-                  type="number"
+                  id="company"
+                  {...register("company", {
+                    required: "Company name is required",
+                  })}
+                  placeholder="Amazon, Microsoft, Swiggy"
+                  className="border p-2 rounded-lg w-full"
                 />
+                {errors.company && (
+                  <p className="text-red-500 text-sm">
+                    {errors.company.message}
+                  </p>
+                )}
               </div>
-            </div>
-          </div>
+              <div className="flex flex-col">
+                <label htmlFor="location" className="mb-1 font-medium">
+                  Location
+                </label>
+                <input
+                  id="location"
+                  {...register("location", {
+                    required: "Location is required",
+                  })}
+                  placeholder="Choose Prefered Location"
+                  className="border p-2 rounded-lg w-full"
+                />
+                {errors.location && (
+                  <p className="text-red-500 text-sm">
+                    {errors.location.message}
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="jobType" className="mb-1 font-medium">
+                  Job Type
+                </label>
+                <select
+                  id="jobType"
+                  {...register("jobType", { required: "Job type is required" })}
+                  className="border p-2 rounded-lg w-full"
+                >
+                  <option value="Full Time">Full Time</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Part Time">Part Time</option>
+                  <option value="Contract">Contract</option>
+                </select>
+                {errors.jobType && (
+                  <p className="text-red-500 text-sm">
+                    {errors.jobType.message}
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col sm:w-[99%]">
+                <label htmlFor="salaryRange" className="mb-1 font-medium">
+                  Salary Range
+                </label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1 flex items-center border rounded-lg p-2">
+                    <span className="absolute left-2 text-gray-500">↕</span>
+                    <span className="absolute left-6 text-gray-500">₹</span>
+                    <input
+                      id="minSalary"
+                      {...register("minSalary", {
+                        required: "Min salary required",
+                      })}
+                      placeholder="0"
+                      className="pl-10 pr-2 w-full text-gray-500 outline-none"
+                      type="number"
+                    />
+                  </div>
+                  <div className="relative flex-1 flex items-center border rounded-lg p-2">
+                    <span className="absolute left-2 text-gray-500">↕</span>
+                    <span className="absolute left-6 text-gray-500">₹</span>
+                    <input
+                      id="maxSalary"
+                      {...register("maxSalary", {
+                        required: "Max salary required",
+                      })}
+                      placeholder="12,00,000"
+                      className="pl-10 pr-2 w-full text-gray-500 outline-none"
+                      type="number"
+                    />
+                  </div>
+                </div>
+              </div>
 
-          {/* Application Deadline */}
-          <div className="flex flex-col sm:col-span-1">
-            <label htmlFor="applicationDeadline" className="mb-1 font-medium">Application Deadline</label>
-            <input
-              id="applicationDeadline"
-              type="date"
-              {...register("applicationDeadline", { required: "Deadline is required" })}
-              className="border p-2 rounded-lg w-full"
-            />
-            {errors.applicationDeadline && <p className="text-red-500 text-sm">{errors.applicationDeadline.message}</p>}
-          </div>
-
-          {/* Job Description */}
-          <div className="flex flex-col col-span-2">
-            <label htmlFor="description" className="mb-1 font-medium">Job Description</label>
-            <textarea
-              id="description"
-              {...register("description", { required: "Description is required" })}
-              placeholder="Please share a description to let the candidate know more about the job role"
-              className="border p-2 rounded-lg w-full"
-              rows="6"
-            ></textarea>
-            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+              <div className="flex flex-col sm:col-span-1">
+                <label
+                  htmlFor="applicationDeadline"
+                  className="mb-1 font-medium"
+                >
+                  Application Deadline
+                </label>
+                <input
+                  id="applicationDeadline"
+                  type="date"
+                  {...register("applicationDeadline", {
+                    required: "Deadline is required",
+                  })}
+                  className="border p-2 rounded-lg w-full"
+                />
+                {errors.applicationDeadline && (
+                  <p className="text-red-500 text-sm">
+                    {errors.applicationDeadline.message}
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col col-span-2">
+                <label htmlFor="description" className="mb-1 font-medium">
+                  Job Description
+                </label>
+                <textarea
+                  id="description"
+                  {...register("description", {
+                    required: "Description is required",
+                  })}
+                  placeholder="Please share a description to let the candidate know more about the job role"
+                  className="border p-2 rounded-lg w-full"
+                  rows="6"
+                ></textarea>
+                {errors.description && (
+                  <p className="text-red-500 text-sm">
+                    {errors.description.message}
+                  </p>
+                )}
+              </div>
+              <div className="col-span-2 flex justify-between mt-4">
+                <button
+                  type="button"
+                  className="border border-gray-400 text-gray-700 p-2 rounded-lg px-6"
+                  onClick={() => console.log("Draft saved")}
+                >
+                  Save Draft
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white p-2 rounded-lg px-8"
+                >
+                  {editJobId ? "Update" : "Publish"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-
-        {/* Fixed Buttons */}
-        <div className="col-span-2 flex justify-between mt-2 pt-2 border-t">
-          <button
-            type="button"
-            className="border border-gray-400 text-gray-700 p-2 rounded-lg px-6"
-            onClick={() => console.log("Draft saved")}
-          >
-            Save Draft
-          </button>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded-lg px-8"
-          >
-            {editJobId ? "Update" : "Publish"}
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-)}
-
+      )}
 
       <div className="mt-21 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-3 sm:gap-3 min-h-[120px]">
         <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 w-full sm:w-auto">
