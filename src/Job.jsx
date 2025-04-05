@@ -173,41 +173,45 @@ const Job = () => {
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
       <div className="w-full">
       <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[60%] mx-auto fixed top-5 left-[48%] sm:left-1/2 transform -translate-x-[48%] sm:-translate-x-1/2 z-10">
-    <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4">
-      <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-10 w-full">
-        <img
-          src={homeImage}
-          alt="Logo"
-          className="w-8 h-8 flex-shrink-0"
-        />
+  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+    <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-10 w-full justify-center sm:justify-start">
+      <img
+        src={homeImage}
+        alt="Logo"
+        className="w-8 h-8 flex-shrink-0"
+      />
 
-        <nav className="flex flex-wrap gap-3 sm:gap-6 text-sm sm:text-base">
-          <a href="#" className="text-black font-medium">
-            Home
-          </a>
-          <a href="#" className="text-black font-medium">
-            Find Jobs
-          </a>
-          <a href="#" className="text-black font-medium">
-            Find Talents
-          </a>
-          <a href="#" className="text-black font-medium">
-            About us
-          </a>
-          <a href="#" className="text-black font-medium">
-            Testimonials
-          </a>
-        </nav>
-
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
-        >
-          Create Jobs
-        </button>
-      </div>
+      <nav className="flex flex-wrap justify-center gap-3 sm:gap-6 text-sm sm:text-base">
+        <a href="#" className="text-black font-medium">
+          Home
+        </a>
+        <a href="#" className="text-black font-medium">
+          Find Jobs
+        </a>
+        <a href="#" className="text-black font-medium">
+          Find Talents
+        </a>
+        <a href="#" className="text-black font-medium">
+          About us
+        </a>
+        <a href="#" className="text-black font-medium">
+          Testimonials
+        </a>
+      </nav>
     </div>
-  </header>
+
+    
+    <div className="w-full sm:w-auto flex justify-center sm:justify-end">
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+      >
+        Create Jobs
+      </button>
+    </div>
+  </div>
+</header>
+
       </div>
 
       {isModalOpen && (
