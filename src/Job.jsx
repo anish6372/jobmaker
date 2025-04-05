@@ -172,42 +172,42 @@ const Job = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
       <div className="w-full">
-        <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[60%] mx-auto fixed top-5 left-[48%] sm:left-1/2 transform -translate-x-[48%] sm:-translate-x-1/2 z-10">
-          <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4">
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-10 w-full">
-              <img
-                src={homeImage}
-                alt="Logo"
-                className="w-8 h-8 flex-shrink-0"
-              />
+      <header className="bg-white shadow-md rounded-full p-3 px-4 sm:px-6 w-full sm:w-[90%] lg:w-[60%] mx-auto fixed top-5 left-[48%] sm:left-1/2 transform -translate-x-[48%] sm:-translate-x-1/2 z-10">
+    <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-4">
+      <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-10 w-full">
+        <img
+          src={homeImage}
+          alt="Logo"
+          className="w-8 h-8 flex-shrink-0"
+        />
 
-              <nav className="flex flex-wrap gap-3 sm:gap-6 text-sm sm:text-base">
-                <a href="#" className="text-black font-medium">
-                  Home
-                </a>
-                <a href="#" className="text-black font-medium">
-                  Find Jobs
-                </a>
-                <a href="#" className="text-black font-medium">
-                  Find Talents
-                </a>
-                <a href="#" className="text-black font-medium">
-                  About us
-                </a>
-                <a href="#" className="text-black font-medium">
-                  Testimonials
-                </a>
-              </nav>
+        <nav className="flex flex-wrap gap-3 sm:gap-6 text-sm sm:text-base">
+          <a href="#" className="text-black font-medium">
+            Home
+          </a>
+          <a href="#" className="text-black font-medium">
+            Find Jobs
+          </a>
+          <a href="#" className="text-black font-medium">
+            Find Talents
+          </a>
+          <a href="#" className="text-black font-medium">
+            About us
+          </a>
+          <a href="#" className="text-black font-medium">
+            Testimonials
+          </a>
+        </nav>
 
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
-              >
-                Create Jobs
-              </button>
-            </div>
-          </div>
-        </header>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+        >
+          Create Jobs
+        </button>
+      </div>
+    </div>
+  </header>
       </div>
 
       {isModalOpen && (
@@ -302,7 +302,7 @@ const Job = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:col-span-2">
-                {/* Salary Range */}
+               
                 <div className="flex flex-col">
                   <label htmlFor="salaryRange" className="mb-1 font-medium">
                     Salary Range
@@ -337,7 +337,7 @@ const Job = () => {
                   </div>
                 </div>
 
-                {/* Application Deadline */}
+               
                 <div className="flex flex-col">
                   <label
                     htmlFor="applicationDeadline"
@@ -401,44 +401,48 @@ const Job = () => {
         </div>
       )}
 
-<div className="mt-28 sm:mt-20 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-3 sm:gap-3 min-h-[120px]">
+<div className="mt-[160px] sm:mt-24 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-4 min-h-[120px] sm:w-[90%] lg:w-[80%]">
 
-        <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 w-full sm:w-auto">
-          <FaSearch className="text-gray-500" />
-          <input
-            type="text"
-            placeholder="Search By Job Title, Role"
-            className="border-none outline-none p-2 w-full"
-          />
-        </div>
+  <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 w-full sm:w-auto">
+    <FaSearch className="text-gray-500" />
+    <input
+      type="text"
+      placeholder="Search By Job Title, Role"
+      className="border-none outline-none p-2 w-full"
+    />
+  </div>
 
-        <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 cursor-pointer w-full sm:w-auto">
-          <FaMapMarkerAlt className="text-gray-500" />
-          <span className="text-gray-700">Preferred Location</span>
-        </div>
+  
+  <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 cursor-pointer w-full sm:w-auto">
+    <FaMapMarkerAlt className="text-gray-500" />
+    <span className="text-gray-700">Preferred Location</span>
+  </div>
 
-        <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 cursor-pointer w-full sm:w-auto">
-          <FaUsers className="text-gray-500" />
-          <span className="text-gray-700">Job Type</span>
-        </div>
+ 
+  <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 cursor-pointer w-full sm:w-auto">
+    <FaUsers className="text-gray-500" />
+    <span className="text-gray-700">Job Type</span>
+  </div>
 
-        <div className="flex flex-col w-full sm:w-auto">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-gray-700 font-medium">Salary Per Month</span>
-            <span className="text-gray-700 text-sm">₹50k - ₹80k</span>
-          </div>
-          <div className="w-full sm:w-64">
-            <Slider
-              defaultValue={[50, 80]}
-              aria-label="Salary Range"
-              valueLabelDisplay="auto"
-              min={15}
-              max={200}
-              sx={{ color: "black" }}
-            />
-          </div>
-        </div>
-      </div>
+  
+  <div className="flex flex-col w-full sm:w-auto">
+    <div className="flex items-center justify-between mb-1">
+      <span className="text-gray-700 font-medium">Salary Per Month</span>
+      <span className="text-gray-700 text-sm">₹50k - ₹80k</span>
+    </div>
+    <div className="w-full sm:w-64">
+      <Slider
+        defaultValue={[50, 80]}
+        aria-label="Salary Range"
+        valueLabelDisplay="auto"
+        min={15}
+        max={200}
+        sx={{ color: "black" }}
+      />
+    </div>
+  </div>
+</div>
+
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-[1400px] gap-5 w-full max-w-7xl mx-auto">
         {allJobs.map((job, index) => (
