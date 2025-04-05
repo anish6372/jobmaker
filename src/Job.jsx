@@ -212,184 +212,158 @@ const Job = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
-          <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-[98%] sm:h-[80%] shadow-lg relative overflow-y-auto">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">
-              {editJobId ? "Edit Job" : "Create Job"}
-            </h2>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-2 right-4 text-xl"
+  <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-4">
+    <div className="bg-white p-6 sm:p-8 rounded-lg w-full max-w-3xl h-[98%] sm:h-[80%] shadow-lg relative flex flex-col">
+      
+      {/* Modal Header */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl sm:text-2xl font-bold">
+          {editJobId ? "Edit Job" : "Create Job"}
+        </h2>
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="text-xl font-bold"
+        >
+          &times;
+        </button>
+      </div>
+
+      {/* Scrollable Form */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col flex-1 overflow-hidden"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto pr-2 mb-4">
+          {/* Job Title */}
+          <div className="flex flex-col">
+            <label htmlFor="title" className="mb-1 font-medium">Job Title</label>
+            <input
+              id="title"
+              {...register("title", { required: "Job title is required" })}
+              placeholder="Job Title"
+              className="border p-2 rounded-lg w-full"
+            />
+            {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
+          </div>
+
+          {/* Company Name */}
+          <div className="flex flex-col">
+            <label htmlFor="company" className="mb-1 font-medium">Company Name</label>
+            <input
+              id="company"
+              {...register("company", { required: "Company name is required" })}
+              placeholder="Amazon, Microsoft, Swiggy"
+              className="border p-2 rounded-lg w-full"
+            />
+            {errors.company && <p className="text-red-500 text-sm">{errors.company.message}</p>}
+          </div>
+
+          {/* Location */}
+          <div className="flex flex-col">
+            <label htmlFor="location" className="mb-1 font-medium">Location</label>
+            <input
+              id="location"
+              {...register("location", { required: "Location is required" })}
+              placeholder="Choose Preferred Location"
+              className="border p-2 rounded-lg w-full"
+            />
+            {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
+          </div>
+
+          {/* Job Type */}
+          <div className="flex flex-col">
+            <label htmlFor="jobType" className="mb-1 font-medium">Job Type</label>
+            <select
+              id="jobType"
+              {...register("jobType", { required: "Job type is required" })}
+              className="border p-2 rounded-lg w-full"
             >
-              &times;
-            </button>
+              <option value="Full Time">Full Time</option>
+              <option value="Internship">Internship</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Contract">Contract</option>
+            </select>
+            {errors.jobType && <p className="text-red-500 text-sm">{errors.jobType.message}</p>}
+          </div>
 
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            >
-              <div className="flex flex-col">
-                <label htmlFor="title" className="mb-1 font-medium">
-                  Job Title
-                </label>
+          {/* Salary Range */}
+          <div className="flex flex-col sm:w-[99%]">
+            <label htmlFor="salaryRange" className="mb-1 font-medium">Salary Range</label>
+            <div className="flex gap-2">
+              <div className="relative flex-1 flex items-center border rounded-lg p-2">
+                <span className="absolute left-2 text-gray-500">↕</span>
+                <span className="absolute left-6 text-gray-500">₹</span>
                 <input
-                  id="title"
-                  {...register("title", { required: "Job title is required" })}
-                  placeholder="Job Title"
-                  className="border p-2 rounded-lg w-full"
+                  id="minSalary"
+                  {...register("minSalary", { required: "Min salary required" })}
+                  placeholder="0"
+                  className="pl-10 pr-2 w-full text-gray-500 outline-none"
+                  type="number"
                 />
-                {errors.title && (
-                  <p className="text-red-500 text-sm">{errors.title.message}</p>
-                )}
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="company" className="mb-1 font-medium">
-                  Company Name
-                </label>
+              <div className="relative flex-1 flex items-center border rounded-lg p-2">
+                <span className="absolute left-2 text-gray-500">↕</span>
+                <span className="absolute left-6 text-gray-500">₹</span>
                 <input
-                  id="company"
-                  {...register("company", {
-                    required: "Company name is required",
-                  })}
-                  placeholder="Amazon, Microsoft, Swiggy"
-                  className="border p-2 rounded-lg w-full"
+                  id="maxSalary"
+                  {...register("maxSalary", { required: "Max salary required" })}
+                  placeholder="12,00,000"
+                  className="pl-10 pr-2 w-full text-gray-500 outline-none"
+                  type="number"
                 />
-                {errors.company && (
-                  <p className="text-red-500 text-sm">
-                    {errors.company.message}
-                  </p>
-                )}
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="location" className="mb-1 font-medium">
-                  Location
-                </label>
-                <input
-                  id="location"
-                  {...register("location", {
-                    required: "Location is required",
-                  })}
-                  placeholder="Choose Prefered Location"
-                  className="border p-2 rounded-lg w-full"
-                />
-                {errors.location && (
-                  <p className="text-red-500 text-sm">
-                    {errors.location.message}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="jobType" className="mb-1 font-medium">
-                  Job Type
-                </label>
-                <select
-                  id="jobType"
-                  {...register("jobType", { required: "Job type is required" })}
-                  className="border p-2 rounded-lg w-full"
-                >
-                  <option value="Full Time">Full Time</option>
-                  <option value="Internship">Internship</option>
-                  <option value="Part Time">Part Time</option>
-                  <option value="Contract">Contract</option>
-                </select>
-                {errors.jobType && (
-                  <p className="text-red-500 text-sm">
-                    {errors.jobType.message}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col sm:w-[99%]">
-  <label htmlFor="salaryRange" className="mb-1 font-medium">
-    Salary Range
-  </label>
-  <div className="flex gap-2">
-    <div className="relative flex-1 flex items-center border rounded-lg p-2">
-      <span className="absolute left-2 text-gray-500">↕</span>
-      <span className="absolute left-6 text-gray-500">₹</span>
-      <input
-        id="minSalary"
-        {...register("minSalary", { required: "Min salary required" })}
-        placeholder="0"
-        className="pl-10 pr-2 w-full text-gray-500 outline-none"
-        type="number"
-      />
-    </div>
-    <div className="relative flex-1 flex items-center border rounded-lg p-2">
-      <span className="absolute left-2 text-gray-500">↕</span>
-      <span className="absolute left-6 text-gray-500">₹</span>
-      <input
-        id="maxSalary"
-        {...register("maxSalary", { required: "Max salary required" })}
-        placeholder="12,00,000"
-        className="pl-10 pr-2 w-full text-gray-500 outline-none"
-        type="number"
-      />
-    </div>
-  </div>
-</div>
+            </div>
+          </div>
 
+          {/* Application Deadline */}
+          <div className="flex flex-col sm:col-span-1">
+            <label htmlFor="applicationDeadline" className="mb-1 font-medium">Application Deadline</label>
+            <input
+              id="applicationDeadline"
+              type="date"
+              {...register("applicationDeadline", { required: "Deadline is required" })}
+              className="border p-2 rounded-lg w-full"
+            />
+            {errors.applicationDeadline && <p className="text-red-500 text-sm">{errors.applicationDeadline.message}</p>}
+          </div>
 
-              <div className="flex flex-col sm:col-span-1">
-                <label
-                  htmlFor="applicationDeadline"
-                  className="mb-1 font-medium"
-                >
-                  Application Deadline
-                </label>
-                <input
-                  id="applicationDeadline"
-                  type="date"
-                  {...register("applicationDeadline", {
-                    required: "Deadline is required",
-                  })}
-                  className="border p-2 rounded-lg w-full"
-                />
-                {errors.applicationDeadline && (
-                  <p className="text-red-500 text-sm">
-                    {errors.applicationDeadline.message}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col col-span-2">
-                <label htmlFor="description" className="mb-1 font-medium">
-                  Job Description
-                </label>
-                <textarea
-                  id="description"
-                  {...register("description", {
-                    required: "Description is required",
-                  })}
-                  placeholder="Please share a description to let the candidate know more about the job role"
-                  className="border p-2 rounded-lg w-full"
-                  rows="6"
-                ></textarea>
-                {errors.description && (
-                  <p className="text-red-500 text-sm">
-                    {errors.description.message}
-                  </p>
-                )}
-              </div>
-              <div className="col-span-2 flex justify-between mt-4">
-                <button
-                  type="button"
-                  className="border border-gray-400 text-gray-700 p-2 rounded-lg px-6"
-                  onClick={() => console.log("Draft saved")}
-                >
-                  Save Draft
-                </button>
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white p-2 rounded-lg px-8"
-                >
-                  {editJobId ? "Update" : "Publish"}
-                </button>
-              </div>
-            </form>
+          {/* Job Description */}
+          <div className="flex flex-col col-span-2">
+            <label htmlFor="description" className="mb-1 font-medium">Job Description</label>
+            <textarea
+              id="description"
+              {...register("description", { required: "Description is required" })}
+              placeholder="Please share a description to let the candidate know more about the job role"
+              className="border p-2 rounded-lg w-full"
+              rows="6"
+            ></textarea>
+            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
           </div>
         </div>
-      )}
 
-      <div className="mt-23 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-3 sm:gap-3 min-h-[120px]">
+        {/* Fixed Buttons */}
+        <div className="col-span-2 flex justify-between mt-2 pt-2 border-t">
+          <button
+            type="button"
+            className="border border-gray-400 text-gray-700 p-2 rounded-lg px-6"
+            onClick={() => console.log("Draft saved")}
+          >
+            Save Draft
+          </button>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 rounded-lg px-8"
+          >
+            {editJobId ? "Update" : "Publish"}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+
+      <div className="mt-21 bg-white shadow-md p-6 rounded-lg flex flex-col sm:flex-row justify-between items-center w-full mx-auto gap-3 sm:gap-3 min-h-[120px]">
         <div className="flex items-center space-x-2 border-b sm:border-r sm:border-b-0 sm:pr-3 w-full sm:w-auto">
           <FaSearch className="text-gray-500" />
           <input
