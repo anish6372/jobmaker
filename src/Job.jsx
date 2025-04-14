@@ -178,7 +178,7 @@ const Job = () => {
     <div className="flex items-center gap-6 flex-wrap justify-center sm:justify-start">
       <img src={homeImage} alt="Logo" className="w-8 h-8 flex-shrink-0" />
       <nav
-        className="flex flex-wrap gap-10 text-sm sm:text-base"
+        className="flex flex-wrap gap-8 text-sm sm:text-base"
         style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
       >
         <a href="#" className="text-black font-medium">Home</a>
