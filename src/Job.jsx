@@ -173,37 +173,43 @@ const Job = () => {
   const allJobs = [...jobs, ...dynamicJobs];
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
-     <header className="bg-white shadow-sm rounded-full p-3 px-4 sm:px-6 w-full sm:w-[65%] lg:w-[50%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
-  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-    
-   
-    <div className="flex items-center gap-6 flex-wrap justify-center sm:justify-start">
-      <img src={homeImage} alt="Logo" className="w-8 h-8 flex-shrink-0" />
-      <nav
-        className="flex flex-wrap gap-8 text-sm sm:text-base"
-        style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
-      >
-        <a href="#" className="text-black font-medium">Home</a>
-        <a href="#" className="text-black font-medium">Find Jobs</a>
-        <a href="#" className="text-black font-medium">Find Talents</a>
-        <a href="#" className="text-black font-medium">About us</a>
-        <a href="#" className="text-black font-medium">Testimonials</a>
-      </nav>
-    </div>
+      <header className="bg-white shadow-sm rounded-full p-3 px-4 sm:px-6 w-full sm:w-[65%] lg:w-[50%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-6 flex-wrap justify-center sm:justify-start">
+            <img src={homeImage} alt="Logo" className="w-8 h-8 flex-shrink-0" />
+            <nav
+              className="flex flex-wrap gap-8 text-sm sm:text-base"
+              style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
+            >
+              <a href="#" className="text-black font-medium">
+                Home
+              </a>
+              <a href="#" className="text-black font-medium">
+                Find Jobs
+              </a>
+              <a href="#" className="text-black font-medium">
+                Find Talents
+              </a>
+              <a href="#" className="text-black font-medium">
+                About us
+              </a>
+              <a href="#" className="text-black font-medium">
+                Testimonials
+              </a>
+            </nav>
+          </div>
 
-   
-    <div className="flex justify-center sm:justify-end w-full sm:w-auto">
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
-        style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
-      >
-        Create Jobs
-      </button>
-    </div>
-  </div>
-</header>
-
+          <div className="flex justify-center sm:justify-end w-full sm:w-auto">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+              style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
+            >
+              Create Jobs
+            </button>
+          </div>
+        </div>
+      </header>
 
       {isModalOpen && (
         <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-2 sm:p-4">
@@ -231,7 +237,7 @@ const Job = () => {
               >
                 <label
                   htmlFor="title"
-                  className="mb-1 font-medium text-[#222222]"
+                  className="mb-1 font-bold text-[#222222]"
                 >
                   Job Title
                 </label>
@@ -417,18 +423,17 @@ const Job = () => {
                   style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
                   onClick={() => console.log("Draft saved")}
                 >
-                   
                   Save Draft
                   <ChevronsDown size={18} />
                 </button>
                 <button
-  type="submit"
-  className="bg-sky-500 text-white py-2.5 px-12 rounded-lg flex items-center justify-center gap-2 text-base"
-  style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
->
-  {editJobId ? "Update" : "Publish"}
-  <ChevronsRight size={18} />
-</button>
+                  type="submit"
+                  className="bg-sky-500 text-white py-2.5 px-12 rounded-lg flex items-center justify-center gap-2 text-base"
+                  style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
+                >
+                  {editJobId ? "Update" : "Publish"}
+                  <ChevronsRight size={18} />
+                </button>
               </div>
             </form>
           </div>
@@ -486,7 +491,6 @@ const Job = () => {
           </div>
           <div className="w-full px-2">
             {" "}
-           
             <Slider
               defaultValue={[50, 80]}
               aria-label="Salary Range"
