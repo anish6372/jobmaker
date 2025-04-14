@@ -171,52 +171,37 @@ const Job = () => {
   const allJobs = [...jobs, ...dynamicJobs];
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 sm:p-5">
-      <div className="w-full">
-        <header className="bg-white shadow-sm rounded-full p-3 px-4 sm:px-6 w-full sm:w-[65%] lg:w-[50%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-8 w-full justify-center sm:justify-start">
-              <img
-                src={homeImage}
-                alt="Logo"
-                className="w-8 h-8 flex-shrink-0"
-              />
+     <header className="bg-white shadow-sm rounded-full p-3 px-4 sm:px-6 w-full sm:w-[65%] lg:w-[50%] mx-auto fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
+  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+    
+   
+    <div className="flex items-center gap-6 flex-wrap justify-center sm:justify-start">
+      <img src={homeImage} alt="Logo" className="w-8 h-8 flex-shrink-0" />
+      <nav
+        className="flex flex-wrap gap-4 text-sm sm:text-base"
+        style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
+      >
+        <a href="#" className="text-black font-medium">Home</a>
+        <a href="#" className="text-black font-medium">Find Jobs</a>
+        <a href="#" className="text-black font-medium">Find Talents</a>
+        <a href="#" className="text-black font-medium">About us</a>
+        <a href="#" className="text-black font-medium">Testimonials</a>
+      </nav>
+    </div>
 
-              <nav
-                className="flex flex-wrap justify-center gap-4 sm:gap-17 text-sm sm:text-base"
-                style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
-              >
-                <a href="#" className="text-black font-medium">
-                  Home
-                </a>
-                <a href="#" className="text-black font-medium">
-                  Find Jobs
-                </a>
-                <a href="#" className="text-black font-medium">
-                  Find Talents
-                </a>
-                <a href="#" className="text-black font-medium">
-                  About us
-                </a>
-                <a href="#" className="text-black font-medium">
-                  Testimonials
-                </a>
-              </nav>
+   
+    <div className="flex justify-center sm:justify-end w-full sm:w-auto">
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+        style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 500 }}
+      >
+        Create Jobs
+      </button>
+    </div>
+  </div>
+</header>
 
-              <div
-                className="w-full sm:w-auto flex justify-center sm:justify-end"
-                style={{ fontWeight: 500, fontFamily: "Satoshi, sans-serif" }}
-              >
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
-                >
-                  Create Jobs
-                </button>
-              </div>
-            </div>
-          </div>
-        </header>
-      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[rgba(60,60,60,0.5)] z-20 p-2 sm:p-4">
