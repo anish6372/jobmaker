@@ -431,7 +431,7 @@ const Job = () => {
       )}
 
       <div
-        className="mt-[230px] sm:mt-58 bg-white p-6 rounded-lg flex flex-wrap items-center gap-6 w-full min-h-[120px]"
+        className="mt-[220px] sm:mt-38 bg-white p-6 rounded-lg flex flex-wrap items-center gap-6 w-full min-h-[120px]"
         style={{ color: "#686868" }}
       >
         <div className="flex items-center gap-2 flex-grow basis-[200px] border-b sm:border-b-0 sm:border-r pr-4">
