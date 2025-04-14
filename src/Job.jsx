@@ -5,6 +5,8 @@ import homeImage from "./assets/home.png";
 import amazonImage from "./assets/amazon.png";
 import teslaImage from "./assets/tesla.png";
 import swiggyImage from "./assets/swiggy.png";
+import { ChevronsRight } from "lucide-react";
+import { ChevronsDown } from "lucide-react";
 // import { FaEdit, FaTrash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -411,19 +413,22 @@ const Job = () => {
               <div className="col-span-1 sm:col-span-2 flex justify-between mt-4">
                 <button
                   type="button"
-                  className="border border-gray-400 text-gray-700 p-2 rounded-lg px-4 sm:px-6"
+                  className="border border-gray-400 text-gray-700  rounded-lg py-2.5 px-12 sm:px-6 flex items-center justify-center gap-2 text-base"
                   style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
                   onClick={() => console.log("Draft saved")}
                 >
+                   
                   Save Draft
+                  <ChevronsDown size={18} />
                 </button>
                 <button
-                  type="submit"
-                  className="bg-sky-500 text-white p-2 rounded-lg px-6 sm:px-8"
-                  style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
-                >
-                  {editJobId ? "Update" : "Publish"}
-                </button>
+  type="submit"
+  className="bg-sky-500 text-white py-2.5 px-12 rounded-lg flex items-center justify-center gap-2 text-base"
+  style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
+>
+  {editJobId ? "Update" : "Publish"}
+  <ChevronsRight size={18} />
+</button>
               </div>
             </form>
           </div>
