@@ -439,12 +439,10 @@ const Job = () => {
           </div>
         </div>
       )}
-<div
-  className="mt-[224px] sm:mt-[160px] md:mt-[180px] lg:mt-[200px] xl:mt-[130px] bg-white p-6 rounded-lg flex flex-wrap items-center gap-6 w-full min-h-[120px]"
-  style={{ color: "#686868" }}
->
-
-
+      <div
+        className="mt-[224px] sm:mt-[160px] md:mt-[180px] lg:mt-[200px] xl:mt-[90px] bg-white p-6 rounded-lg flex flex-wrap items-center gap-6 w-full min-h-[120px]"
+        style={{ color: "#686868" }}
+      >
         <div className="flex items-center gap-2 flex-grow basis-[200px] border-b sm:border-b-0 sm:border-r pr-4">
           <FaSearch className="text-[#686868]" />
           <input
