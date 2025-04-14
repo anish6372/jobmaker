@@ -416,10 +416,10 @@ const Job = () => {
                 )}
               </div>
 
-              <div className="col-span-1 sm:col-span-2 flex justify-between mt-4">
+              <div className="col-span-1 sm:col-span-2 flex flex-col sm:flex-row justify-between mt-4 gap-4">
                 <button
                   type="button"
-                  className="border border-gray-400 text-gray-700  rounded-lg py-2.5 px-12 sm:px-6 flex items-center justify-center gap-2 text-base"
+                  className="border border-gray-400 text-gray-700 rounded-lg py-2.5 px-12 sm:px-6 flex items-center justify-center gap-2 text-base w-full sm:w-auto"
                   style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
                   onClick={() => console.log("Draft saved")}
                 >
@@ -428,7 +428,7 @@ const Job = () => {
                 </button>
                 <button
                   type="submit"
-                  className="bg-sky-500 text-white py-2.5 px-12 rounded-lg flex items-center justify-center gap-2 text-base"
+                  className="bg-sky-500 text-white py-2.5 px-12 rounded-lg flex items-center justify-center gap-2 text-base w-full sm:w-auto"
                   style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 600 }}
                 >
                   {editJobId ? "Update" : "Publish"}
@@ -439,10 +439,12 @@ const Job = () => {
           </div>
         </div>
       )}
-      <div
-        className="mt-[224px] sm:mt-[160px] md:mt-[160px] lg:mt-[190px] xl:mt-[150px] bg-white p-6 rounded-lg flex flex-wrap items-center gap-6 w-full min-h-[120px]"
-        style={{ color: "#686868" }}
-      >
+<div
+  className="mt-[224px] sm:mt-[160px] md:mt-[180px] lg:mt-[200px] xl:mt-[130px] bg-white p-6 rounded-lg flex flex-wrap items-center gap-6 w-full min-h-[120px]"
+  style={{ color: "#686868" }}
+>
+
+
         <div className="flex items-center gap-2 flex-grow basis-[200px] border-b sm:border-b-0 sm:border-r pr-4">
           <FaSearch className="text-[#686868]" />
           <input
